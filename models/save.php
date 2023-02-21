@@ -9,7 +9,9 @@ include_once("model.php");
 $model = new model("chat");
 $author = $_GET["author"];
 $content = $_GET["content"];
+$timestamp = date("Y-m-d H:i:s");
 $data = array(
+    "timestamp" => $timestamp,
     "author" => $author,
     "content" => $content
 );
@@ -19,4 +21,3 @@ if ($res) {
 } else {
     echo "Erreur";
 }
-?>

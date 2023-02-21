@@ -30,10 +30,8 @@ class model
     // insert a message
     public function insert($data)
     {
-        $sql = "INSERT INTO $this->table (author, content) VALUES (:author, :content)";
-        $stmt = $this->pdo->prepare($sql);
-        $res = $stmt->execute($data);
-        return $res;
+        $sql = "INSERT INTO $this->table (timestamp,author, content) VALUES (:timestamp,:author, :content)";
+        return $this->pdo->prepare($sql)->execute($data);
     }
 
     // get n latest messages
