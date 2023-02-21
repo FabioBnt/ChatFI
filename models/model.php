@@ -2,6 +2,7 @@
 
 class model
 {
+    private $table;
     private $db = "id20339000_chatfi";
     private $user = "id20339000_fabisma";
     private $pwd = "wkr?#m7anztnR7lE";
@@ -9,8 +10,9 @@ class model
 
     private PDO $pdo;
 
-    public function __construct()
+    public function __construct($table)
     {
+        $this->table = $table;
         $this->pdo = new PDO("mysql:host=$this->host;dbname=$this->db", $this->user, $this->pwd);
     }
 
@@ -19,9 +21,9 @@ class model
         return $this->pdo;
     }
 
-    public function select($table)
+    public function select()
     {
-        $sql = "SELECT * FROM $table";
+        $sql = "SELECT * FROM $this->table";
         return $this->pdo->query($sql)->fetchAll();
     }
 
