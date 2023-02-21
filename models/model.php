@@ -1,12 +1,11 @@
 <?php
-
 class model
 {
     private $table;
-    private $db = "id20339000_chatfi";
-    private $user = "id20339000_fabisma";
-    private $pwd = "wkr?#m7anztnR7lE";
-    private $host = "localhost";
+    private $db = "u563109936_chatfi";
+    private $user = "u563109936_chatfiuser";
+    private $pwd = "2Ba[OKfV[pe[";
+    private $host = "145.14.156.192";
 
     private PDO $pdo;
 
