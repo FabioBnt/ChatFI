@@ -32,10 +32,10 @@ class model
     {
         // add timestamp
         $timestamp = date("Y-m-d H:i:s");
-        $sql = "INSERT INTO $this->table (timestamp,author, content) VALUES ($timestamp,:author, :content)";
         // check special characters
-        $data["author"] = htmlspecialchars($data["author"]);
-        $data["content"] = htmlspecialchars($data["content"]);  
+        $author = htmlspecialchars($data["author"]);
+        $content = htmlspecialchars($data["content"]); 
+        $sql = "INSERT INTO $this->table (author, content, timestamp) VALUES ('$author', '$content', '$timestamp')";
         return $this->pdo->prepare($sql)->execute($data);
     }
 
