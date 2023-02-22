@@ -8,6 +8,10 @@
 //script get.php. Elle met ensuite à jour la zone des contents postés.
 //Note : utiliser la fonction Javascript setInterval et la fonction Jquery load
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 ?>
 
 <!-- Développer une page afficher.php qui fournit l’interface de l’application !-->
@@ -24,59 +28,58 @@
 
 <head>
     <title>ChatFI</title>
-    <meta charset="utf8mb4">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            // When clicking on the send button
-            $("#send").click(function() {
-                // Retrieve the form data
-                var name = $("#name").val();
-                var content = $("#content").val();
-                // Send the data using get to save.php
+            // Function to send message via AJAX
+            function sendMessage() {
+                var name = $('#name').val();
+                var content = $('#content').val();
                 $.ajax({
-                    url: "../models/save.php",
-                    method: "GET",
+                    url: '../models/save.php',
+                    type: 'GET',
                     data: {
                         author: name,
                         content: content
                     },
                     success: function() {
-                        // Clear the form
-                        $("#name").val("");
-                        $("#content").val("");
+                        $('#content').val('');
                     }
                 });
+            }
+
+            // Send message when "send" button is clicked
+            $('#send').click(function() {
+                sendMessage();
             });
 
-            // Refresh the contents every 2 seconds
+            // Send message when "enter" key is pressed in content field
+            $('#content').keypress(function(e) {
+                if (e.which == 13 && !e.shiftKey) {
+                    sendMessage();
+                    return false;
+                }
+            });
+
+            // Refresh contents every 2 seconds
             setInterval(function() {
-                // save the data from get.php
-                // Retrieve the data from get.php
-                $.ajax({
-                    url: "../models/get.php",
-                    method: "GET",
-                    success: function(data) {
-                        // Decode the data
-                        // Display the data
-                        $("#contents").html(data);
-                    }
-                });
+                $('#messages-posted').load('../models/get.php');
+                console.log("refreshed");
             }, 2000);
         });
     </script>
 </head>
 
 <body>
-    <h1>Application Ajax</h1>
+    <h1>ChatFI</h1>
+    <div id="messages-posted"></div>
     <form>
-        <label for="name">name :</label>
-        <input type="text" id="name" name="name"><br>
-        <label for="content">content :</label>
-        <textarea id="content" name="content"></textarea><br>
-        <button type="button" id="send">send</button>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <label for="content">Message:</label>
+        <textarea id="content" name="content"></textarea>
+        <button type="button" id="send">Send</button>
     </form>
-    <div id="contents"></div>
 </body>
 
 </html>

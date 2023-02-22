@@ -34,14 +34,16 @@ class model
         $timestamp = date("Y-m-d H:i:s");
         // check special characters
         $author = htmlspecialchars($data["author"]);
-        $content = htmlspecialchars($data["content"]); 
-        $sql = "INSERT INTO $this->table (author, content, timestamp) VALUES ('$author', '$content', '$timestamp')";
-        return $this->pdo->prepare($sql)->execute($data);
+        $content = htmlspecialchars($data["content"]);
+        $sql = "INSERT INTO $this->table (author, content, timestamp) VALUES (:author, :content, :timestamp)";
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute(array(':author' => $author, ':content' => $content, ':timestamp' => $timestamp));
     }
+
 
     // get n latest messages
     public function selectNLatest($n)
-    {   
+    {
         // if n is not an integer, exception
         if (!is_int($n)) {
             throw new Exception("n must be an integer");
@@ -57,5 +59,4 @@ class model
         $sql = "SELECT * FROM $this->table ORDER BY id DESC LIMIT $n";
         return $this->pdo->query($sql)->fetchAll();
     }
-
 }
