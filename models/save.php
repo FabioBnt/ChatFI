@@ -7,6 +7,7 @@ L’estampille horaire devra être fournie par le script PHP, alors que l’iden
 automatiquement par MySQL.*/
 include_once("model.php");
 $model = new model("chat");
+echo "<dsajkfkldsjafj";
 if(!empty($_GET["author"]) || !empty($_GET["content"])) {
     $author = $_GET["author"];
     $content = $_GET["content"];

@@ -7,7 +7,8 @@ $model = new model("chat");
 $messages = $model->selectNLatest(10);
 // send a json response
 try {
-    echo json_encode($messages, JSON_THROW_ON_ERROR);
+    header('Content-Type: application/json; charset=utf8mb4');
+    echo json_encode($messages, JSON_THROW_ON_ERROR, true);
 } catch (JsonException $e) {
 }
 

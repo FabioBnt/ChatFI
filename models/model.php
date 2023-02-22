@@ -13,7 +13,7 @@ class model
     public function __construct($table)
     {
         $this->table = $table;
-        $this->pdo = new PDO("mysql:host=$this->host;dbname=$this->db", $this->user, $this->pwd);
+        $this->pdo = new PDO("mysql:host=$this->host;dbname=$this->db;charset=utf8mb4", $this->user, $this->pwd);
     }
 
     public function getPDO(): PDO
