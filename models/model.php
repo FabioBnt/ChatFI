@@ -30,13 +30,30 @@ class model
     // insert a message
     public function insert($data): bool
     {
-        $sql = "INSERT INTO $this->table (timestamp,author, content) VALUES (:timestamp,:author, :content)";
+        // add timestamp
+        $timestamp = date("Y-m-d H:i:s");
+        $sql = "INSERT INTO $this->table (timestamp,author, content) VALUES ($timestamp,:author, :content)";
+        // check special characters
+        $data["author"] = htmlspecialchars($data["author"]);
+        $data["content"] = htmlspecialchars($data["content"]);  
         return $this->pdo->prepare($sql)->execute($data);
     }
 
     // get n latest messages
     public function selectNLatest($n)
-    {
+    {   
+        // if n is not an integer, exception
+        if (!is_int($n)) {
+            throw new Exception("n must be an integer");
+        }
+        // if n is negative, exception
+        if ($n < 0) {
+            throw new Exception("n must be positive");
+        }
+        // if n is 0, return empty array
+        if ($n == 0) {
+            return array();
+        }
         $sql = "SELECT * FROM $this->table ORDER BY id DESC LIMIT $n";
         return $this->pdo->query($sql)->fetchAll();
     }
