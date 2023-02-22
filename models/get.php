@@ -10,4 +10,5 @@ try {
     echo json_encode($messages, JSON_THROW_ON_ERROR);
 } catch (JsonException $e) {
 }
+
 ?>
