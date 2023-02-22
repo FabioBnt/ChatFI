@@ -6,5 +6,8 @@ include_once("model.php");
 $model = new model("chat");
 $messages = $model->selectNLatest(10);
 // send a json response
-echo json_encode($messages);
+try {
+    echo json_encode($messages, JSON_THROW_ON_ERROR);
+} catch (JsonException $e) {
+}
 ?>
