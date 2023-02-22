@@ -3,10 +3,10 @@ class model
 {
     // table name
     private $table;
-    private $db = "u563109936_chatfi";
-    private $user = "u563109936_chatfiuser";
-    private $pwd = "2Ba[OKfV[pe[";
-    private $host = "145.14.156.192";
+    private string $db = "u563109936_chatfi";
+    private string $user = "u563109936_chatfiuser";
+    private string $pwd = "2Ba[OKfV[pe[";
+    private string $host = "145.14.156.192";
 
     private PDO $pdo;
 
@@ -28,7 +28,7 @@ class model
     }
 
     // insert a message
-    public function insert($data)
+    public function insert($data): bool
     {
         $sql = "INSERT INTO $this->table (timestamp,author, content) VALUES (:timestamp,:author, :content)";
         return $this->pdo->prepare($sql)->execute($data);
