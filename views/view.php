@@ -22,12 +22,14 @@ error_reporting(E_ALL);
 <!-- Secondes par exemple). à chaque appel, cette routine récupère les nouveaux contents par l’appel de !-->
 <!-- Script get.php. Elle met ensuite à jour la zone des contents postés. !-->
 <!-- Note : utiliser la fonction Javascript setInterval et la fonction Jquery load !-->
-
 <!DOCTYPE html>
-<html>
-
+<html lang="en" >
 <head>
-    <title>ChatFI</title>
+  <meta charset="UTF-8">
+ <title>ChatFI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" href="./style.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -43,6 +45,7 @@ error_reporting(E_ALL);
                         content: content
                     },
                     success: function() {
+                        $("#name").val('');
                         $('#content').val('');
                     }
                 });
@@ -63,23 +66,43 @@ error_reporting(E_ALL);
 
             // Refresh contents every 2 seconds
             setInterval(function() {
-                $('#messages-posted').load('../models/get.php');
+                $('#chat').load('../controllers/get.php');
                 console.log("refreshed");
             }, 2000);
         });
     </script>
 </head>
-
 <body>
-    <h1>ChatFI</h1>
-    <div id="messages-posted"></div>
-    <form>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name">
-        <label for="content">Message:</label>
-        <textarea id="content" name="content"></textarea>
-        <button type="button" id="send">Send</button>
-    </form>
-</body>
-
+<!-- partial:index.partial.html -->
+<div class="wrapper">
+    <div class="container">
+        <div class="left">
+            <div class="top">
+                <input type="text" placeholder="Search" />
+                <a href="javascript:;" class="search"></a>
+            </div>
+            <ul class="people">
+                <li class="person" data-chat="person1">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/thomas.jpg" alt="" />
+                    <span class="name" id="name">Thomas Bangalter</span>
+                    <span class="time">2:09 PM</span>
+                    <span class="preview">I was wondering...</span>
+                </li>
+            </ul>
+        </div>
+        <div class="right"  style="overflow:scroll;">
+            <div id="chat">
+            <div class="top"><span>To: <span class="name">loding..</span></span></div>
+            </div>
+            <!-- make fixed in the bottom of the parent div -->
+            <div class="write">
+                <a href="javascript:;" class="write-link attach"></a>
+                <input type="text" placeholder="name" id="name" />
+                <input type="text" placeholder="message" id="content" />
+                <a href="javascript:;" class="write-link smiley"></a>
+                <a href="javascript:;" class="write-link send"></a>
+            </div>
+        </div>
+    </div>
+</div>
 </html>

@@ -57,6 +57,7 @@ class model
             return array();
         }
         $sql = "SELECT * FROM $this->table ORDER BY id DESC LIMIT $n";
-        return $this->pdo->query($sql)->fetchAll();
+        // reverse the array then return it
+        return array_reverse($this->pdo->query($sql)->fetchAll());
     }
 }
