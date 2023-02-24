@@ -63,6 +63,8 @@ error_reporting(E_ALL);
                     return false;
                 }
             });
+            // at the start and once the page loaded load ../controllers/get.php once
+            $('#chat').load('../controllers/get.php');
 
             // Refresh contents every 2 seconds
             setInterval(function() {
