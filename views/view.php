@@ -71,6 +71,12 @@ error_reporting(E_ALL);
                 $('#chat').load('../controllers/get.php');
                 console.log("refreshed");
             }, 2000);
+
+            // Scroll to the bottom of the chat
+            function scrollToBottom() {
+                $('#chat').scrollTop($('#chat')[0].scrollHeight);
+            }
+            scrollToBottom();
         });
     </script>
 </head>

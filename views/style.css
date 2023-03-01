@@ -179,6 +179,9 @@ body {
   height: 47px;
   padding: 15px 29px;
   background-color: #eceff1;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 .container .right .top span {
   font-size: 15px;
@@ -194,6 +197,7 @@ body {
   display: none;
   overflow: hidden;
   padding: 0 35px 92px;
+  padding-bottom: 18px;
   border-width: 1px 1px 1px 0;
   border-style: solid;
   border-color: var(--light);
@@ -216,6 +220,8 @@ body {
   background-color: #eceff1;
   width: calc(100% - 58px);
   border-radius: 5px;
+  position: sticky;
+  bottom: 0;
 }
 .container .right .write input {
   font-size: 16px;
