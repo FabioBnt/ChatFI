@@ -64,7 +64,6 @@ error_reporting(E_ALL);
                 }
             });
             // at the start and once the page loaded load ../controllers/get.php once
-            $('#chat').load('../controllers/get.php');
 
             // Refresh contents every 2 seconds
             setInterval(function() {
@@ -72,11 +71,11 @@ error_reporting(E_ALL);
                 console.log("refreshed");
             }, 2000);
 
-            // Scroll to the bottom of the chat
+            // Scroll to the bottom of the chat div
             function scrollToBottom() {
-                $('#chat').scrollTop($('#chat')[0].scrollHeight);
+                var chat = document.getElementById('chat');
+                chat.scrollTop = chat.scrollHeight;
             }
-            scrollToBottom();
         });
     </script>
 </head>
@@ -92,20 +91,18 @@ error_reporting(E_ALL);
             <ul class="people">
                 <li class="person" data-chat="person1">
                     <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/thomas.jpg" alt="" />
-                    <span class="name" id="name">Thomas Bangalter</span>
+                    <span class="name">Thomas Bangalter</span>
                     <span class="time">2:09 PM</span>
                     <span class="preview">I was wondering...</span>
                 </li>
             </ul>
         </div>
         <div class="right"  style="overflow:scroll;">
+            <div class="top"><span>From: <span class="name"><input type="text" placeholder="name" id="name" value="loding" /></span></span></div>
             <div id="chat">
-            <div class="top"><span>To: <span class="name">loding..</span></span></div>
             </div>
-            <!-- make fixed in the bottom of the parent div -->
             <div class="write">
                 <a href="javascript:;" class="write-link attach"></a>
-                <input type="text" placeholder="name" id="name" />
                 <input type="text" placeholder="message" id="content" />
                 <a href="javascript:;" class="write-link smiley"></a>
                 <a href="javascript:;" class="write-link send"></a>
