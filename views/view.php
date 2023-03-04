@@ -15,11 +15,10 @@ error_reporting(E_ALL);
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../controllers/view.js"></script>
-    <script>
-    </script>
 </head>
 <body>
-<!-- partial:index.partial.html -->
+<!-- error div color red centered midieum size -->
+<div id="error" style="color:red; text-align:center; font-size:medium;"></div>
 <div class="wrapper">
     <div class="container">
         <div class="left">
@@ -28,10 +27,16 @@ error_reporting(E_ALL);
                 <a href="javascript:;" class="search"></a>
             </div>
             <ul class="people" id="room">
-                <li class="person" data-chat="person1">
+                <li class="person active" data-chat="person1">
                     <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/thomas.jpg" alt="" />
                     <span class="name">Groupe1</span>
                     <!-- Pour chacune des salles, afficher les utilisateurs participant à la conversation.-->
+                    <span class="preview">user1, user2, user3</span>
+                    <span class="time">2:09 PM</span>
+                </li>
+                <li class="person" data-chat="person2">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/john.jpg" alt="" />
+                    <span class="name">Groupe2</span>
                     <span class="preview">user1, user2, user3</span>
                     <span class="time">2:09 PM</span>
                 </li>

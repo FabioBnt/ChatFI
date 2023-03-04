@@ -41,7 +41,7 @@
                 var username = $("#username-input").val();
                 var password = $("#password-input").val();
                 $.ajax({
-                    url: "controllers/login.php",
+                    url: "../controllers/login.php",
                     type: "POST",
                     data: {
                         username: username,
@@ -54,7 +54,7 @@
                                 $(this).remove();
                             });
                             // load the chat
-                            $("#chat").load("views/view.php");
+                            $("#chat").load("view.php");
                         }else{
                             alert("utilisateur ou mot de passe incorrect");
                         }
