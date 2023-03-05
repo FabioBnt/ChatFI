@@ -48,15 +48,15 @@
                         password: password
                     },
                     success: function(data){
-                        if(data == "success"){
+                        if(data == "failure"){
+                            alert("Nom d'utilisateur ou mot de passe incorrect");
+                        }else{
                             // a stylish transition
                             $(".container").fadeOut(500, function(){
                                 $(this).remove();
                             });
                             // load the chat
                             $("#chat").load("view.php");
-                        }else{
-                            alert("utilisateur ou mot de passe incorrect");
                         }
                     }
                 });
