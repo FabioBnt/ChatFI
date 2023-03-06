@@ -28,6 +28,7 @@ $(document).ready(function() {
 
     // Function to send message via AJAX
     function sendMessage() {
+        event.preventDefault();
         let name = $('#name').val();
         let content = $('#content').val();
         $.ajax({
@@ -40,22 +41,20 @@ $(document).ready(function() {
             success: function(data) {
                 $('#content').val('');
                 $('#chat').load('../controllers/get.php', scrollToBottom);
-                // if there is an error, show error message TODO: fix
-                alert(data);
                 if(data == 'error') {
-                    // show error message in id="error" element then hide it after 3 seconds
-                    $('#error').html(data).show().delay(3000).fadeOut();
+                    // show error that the message must have content in id="error" element then hide it after 3 seconds
+                    $('#error').html("Le message dois avoir de contenu").show().delay(3000).fadeOut();
                 }
             }
         });
     }
 
-    // Send message when "send" button is clicked
+    // Send message when "send" link is clicked
     $('#send').click(function() {
         sendMessage();
     });
 
-    // Send message when "enter" key is pressed in content field or TODO: link that contains "send" class
+    // Send message when "enter" key is pressed in content field
     $('#content').keypress(function(e) {
         if (e.which == 13 && !e.shiftKey) {
             sendMessage();

@@ -17,8 +17,6 @@ error_reporting(E_ALL);
     <script src="../controllers/view.js"></script>
 </head>
 <body>
-<!-- error div color red centered midieum size -->
-<div id="error" style="color:red; text-align:center; font-size:medium;"></div>
 <div class="wrapper">
     <div class="container">
         <div class="left">
@@ -50,8 +48,11 @@ error_reporting(E_ALL);
                 <a href="javascript:;" class="write-link attach"></a>
                 <input type="text" placeholder="message" id="content" />
                 <a href="javascript:;" class="write-link smiley"></a>
-                <a href="javascript:;" class="write-link send"></a>
+                <a href="javascript:;" id="send" class="write-link send"></a>
+                
             </div>
+            <!-- error div color red centered midieum size above float above the precedant div -->
+            <div id="error" style="color:red; text-align:center; font-size:medium; margin-top: 10px; margin-bottom: 10px;"></div>
         </div>
     </div>
 </div>
