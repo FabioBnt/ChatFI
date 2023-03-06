@@ -41,9 +41,10 @@ $(document).ready(function() {
                 $('#content').val('');
                 $('#chat').load('../controllers/get.php', scrollToBottom);
                 // if there is an error, show error message TODO: fix
-                if(data.error) {
+                alert(data);
+                if(data == 'error') {
                     // show error message in id="error" element then hide it after 3 seconds
-                    $('#error').html(response.message).show().delay(3000).fadeOut();
+                    $('#error').html(data).show().delay(3000).fadeOut();
                 }
             }
         });

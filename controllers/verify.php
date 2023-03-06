@@ -6,7 +6,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
     $password = $_POST["password"];
     // check if the username and password are valid
     // TODO: use a database or a file to store the users
-    if ($username == "user" && $password == "password") {
+    if ($username == "admin" && $password == "\$iutinfo") {
         // start the session
         session_start();
         // set the username in the session
@@ -17,4 +17,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
         // return failure
         echo "failure";
     }
+}else {
+    // return failure
+    echo "failure";
 }

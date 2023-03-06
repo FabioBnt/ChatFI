@@ -32,6 +32,7 @@
           box-shadow: none;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         /*Ajouter une page de connexion d’un utilisateur plutôt qu’un simple champ de pseudo sur
         l’interface, et afficher la liste des utilisateurs connectés ; vous pouvez également vous poser la
@@ -41,27 +42,23 @@
                 var username = $("#username-input").val();
                 var password = $("#password-input").val();
                 $.ajax({
-                    url: "../controllers/login.php",
+                    url: "../controllers/verify.php",
                     type: "POST",
                     data: {
                         username: username,
                         password: password
                     },
+                    // TODO : fix the bug not showing the alert (not able to get the data)
                     success: function(data){
-                        if(data == "failure"){
-                            alert("Nom d'utilisateur ou mot de passe incorrect");
+                        alert(data);
+                        if(data == "success"){
+                            window.location.href = "view.php";
                         }else{
-                            // a stylish transition
-                            $(".container").fadeOut(500, function(){
-                                $(this).remove();
-                            });
-                            // load the chat
-                            $("#chat").load("view.php");
+                            alert("Nom d'utilisateur ou mot de passe incorrect");
                         }
                     }
-                });
-                    
-            });
+                });     
+            }); 
         });
     </script>
   </head>
@@ -81,7 +78,6 @@
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Se connecter</h4>
-              <form>
                 <div class="form-group">
                   <label for="username-input">Nom d'utilisateur :</label>
                   <input type="text" class="form-control" id="username-input" required>
@@ -90,8 +86,7 @@
                   <label for="password-input">Mot de passe :</label>
                   <input type="password" class="form-control" id="password-input" required>
                 </div>
-                <button type="submit" id="login" class="btn btn-primary">Se connecter</button>
-              </form>
+                <button id="login" class="btn btn-primary">Se connecter</button>
             </div>
           </div>
         </div>

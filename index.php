@@ -1,12 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatFI</title>
-</head>
-<body>
-    <p>Test</p>
-</body>
-</html>
+<?php
+// navigate to the page login if nothing is passed in the url
+if (!isset($_GET["page"])) {
+    header("Location: index.php?page=login");
+}
+// get the page
+$page = $_GET["page"];
+// check if the page is valid
+if ($page == "login" || $page == "view") {
+    // load the page
+    include_once("views/$page.php");
+} else {
+    // navigate to the page login if the page is not valid
+    header("Location: index.php?page=login");
+}
+?>
