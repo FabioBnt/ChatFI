@@ -1,7 +1,6 @@
 $(document).ready(function() {
     // Todo : load rooms
     //$('#rooms').load('../controllers/rooms.php');
-
     // Set active person
     let rooms = {
         list: document.querySelector('ul.people'),
@@ -24,7 +23,7 @@ $(document).ready(function() {
         chat.scrollTop = chat.scrollHeight;
     }
     // load chat once to scroll to bottom
-    $('#chat').load('../controllers/get.php', scrollToBottom);
+    $('#chat').load('controllers/get.php', scrollToBottom);
 
     // Function to send message via AJAX
     function sendMessage() {
@@ -32,7 +31,7 @@ $(document).ready(function() {
         let name = $('#name').val();
         let content = $('#content').val();
         $.ajax({
-            url: '../controllers/save.php',
+            url: 'controllers/save.php',
             type: 'GET',
             data: {
                 author: name,
@@ -40,7 +39,7 @@ $(document).ready(function() {
             },
             success: function(data) {
                 $('#content').val('');
-                $('#chat').load('../controllers/get.php', scrollToBottom);
+                $('#chat').load('controllers/get.php', scrollToBottom);
                 if(data == 'error') {
                     // show error that the message must have content in id="error" element then hide it after 3 seconds
                     $('#error').html("Le message dois avoir de contenu").show().delay(3000).fadeOut();
@@ -64,7 +63,7 @@ $(document).ready(function() {
 
     // Refresh contents every 2 seconds
     setInterval(function() {
-        $('#chat').load('../controllers/get.php');
+        $('#chat').load('controllers/get.php');
         console.log("refreshed");
     }, 2000);
 
