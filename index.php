@@ -9,7 +9,9 @@ if (!isset($_GET["page"])) {
 if (session_status() == PHP_SESSION_NONE)
     session_start();
 // check if the user is logged in
-if (!empty($_SESSION["user"])) {
+if (!empty($_SESSION["conecteduser"])) {
+    // make a hidden input with the username
+    echo "<input type='hidden' id='username' value='" . $_SESSION["conecteduser"] . "' />";
     // navigate to the page view
     $page = "view";
 }

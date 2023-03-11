@@ -11,7 +11,7 @@ if (!empty($_POST["username"]) && !empty($_POST["password"])) {
         if (session_status() == PHP_SESSION_NONE)
             session_start();
         // set the username in the session
-        $_SESSION["user"] = $username;
+        $_SESSION["conecteduser"] = $username;
         // return success
         echo "success";
     } else {

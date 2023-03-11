@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    // chage id user to name user from session user
+    $('#user').val($('#username').val());
     // Todo : load rooms
     //$('#rooms').load('../controllers/rooms.php');
     // Set active person
@@ -67,4 +69,9 @@ $(document).ready(function() {
         console.log("refreshed");
     }, 2000);
 
+    // Logout
+    $('#logout').click(function() {
+        sessionStorage.removeItem('user');
+        window.location.href = "index.php";
+    });
 });
