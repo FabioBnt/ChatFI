@@ -1,6 +1,7 @@
 $(document).ready(function() {
-    // chage id user to name user from session user
-    $('#user').val($('#username').val());
+    // change id user to name user from session user
+    $('#user').html($('#username').val());
+    // $('#user').value() = document.getElementById('username').value();
     // Todo : load rooms
     //$('#rooms').load('../controllers/rooms.php');
     // Set active person
@@ -42,9 +43,9 @@ $(document).ready(function() {
             success: function(data) {
                 $('#content').val('');
                 $('#chat').load('controllers/get.php', scrollToBottom);
-                if(data == 'error') {
+                if(data === 'error') {
                     // show error that the message must have content in id="error" element then hide it after 3 seconds
-                    $('#error').html("Le message dois avoir de contenu").show().delay(3000).fadeOut();
+                    $('#error').html("Le message doit avoir du contenu").show().delay(3000).fadeOut();
                 }
             }
         });
@@ -57,7 +58,7 @@ $(document).ready(function() {
 
     // Send message when "enter" key is pressed in content field
     $('#content').keypress(function(e) {
-        if (e.which == 13 && !e.shiftKey) {
+        if (e.which === 13 && !e.shiftKey) {
             sendMessage();
             return false;
         }
@@ -72,6 +73,8 @@ $(document).ready(function() {
     // Logout
     $('#logout').click(function() {
         sessionStorage.removeItem('user');
+        sessionStorage.clear();
+        alert("Vous êtes déconnecté");
         window.location.href = "index.php";
     });
 });

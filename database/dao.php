@@ -1,8 +1,14 @@
 <?php
-class model
+
+namespace database;
+
+use Exception;
+use PDO;
+
+class dao
 {
     // table name
-    private $table;
+    private string $table;
     private string $db = "u563109936_chatfi";
     private string $user = "u563109936_chatfiuser";
     private string $pwd = "2Ba[OKfV[pe[";
@@ -27,6 +33,11 @@ class model
         return $this->pdo->query($sql)->fetchAll();
     }
 
+    public function selectUser($name,$password){
+        $sql = "SELECT * FROM $this->table WHERE name = '$name' AND password = '$password'";
+        return $this->pdo->query($sql)->fetchAll();
+    }
+
     // insert a message
     public function insert($data): bool
     {
@@ -42,7 +53,7 @@ class model
 
 
     // get n latest messages
-    public function selectNLatest($n)
+    public function selectNLatest($n): array
     {
         // if n is not an integer, exception
         if (!is_int($n)) {

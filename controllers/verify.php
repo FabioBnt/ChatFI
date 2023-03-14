@@ -1,24 +1,29 @@
 <?php
-// ceck if the validity of the username and password
+include_once "../models/user.php";
+use models\user;
+// check if the validity of the username and password
 if (!empty($_POST["username"]) && !empty($_POST["password"])) {
     // get the username and password
     $username = $_POST["username"];
     $password = $_POST["password"];
-    // check if the username and password are valid
-    // TODO: use a database or a file to store the users
-    if ($username == "admin" && $password == "\$iutinfo") {
+    // check if the user exists
+    $db = new user();
+    $res = $db->selectUser($username, $password);
+
+    if (!empty($res)) {
         // start the session if not started
-        if (session_status() == PHP_SESSION_NONE)
+        if (session_status() === PHP_SESSION_NONE) {
             session_start();
+        }
         // set the username in the session
-        $_SESSION["conecteduser"] = $username;
+        $_SESSION["user"] = $username;
         // return success
         echo "success";
     } else {
         // return failure
         echo "failure";
     }
-}else {
+} else {
     // return failure
     echo "failure";
 }

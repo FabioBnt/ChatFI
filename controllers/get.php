@@ -2,12 +2,14 @@
 /* Développer un script PHP recuperer.php permettant l’obtention des 10 derniers messages contenus
 dans la table chat. */
 
+use models\chat;
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-include_once("../models/model.php");
-$model = new model("chat");
+include_once("../models/chat.php");
+$model = new chat("chat");
 try {
     $messages = $model->selectNLatest(10);
     //use the messages to fill in the chats variable
@@ -25,7 +27,7 @@ try {
         $chats .= "<div class='conversation-start'>
         <span>" . $message["timestamp"] . "</span>
     </div>";
-        if ($message["author"] == "user") {
+        if ($message["author"] === "user") {
             // show the name of the author
             $chats .="<div class='bubble me'>";
         } else {

@@ -3,21 +3,22 @@
 $page = null;
 if (!isset($_GET["page"])) {
     $page = "login";
+
 } else {
     $page = $_GET["page"];
 }
-if (session_status() == PHP_SESSION_NONE)
+if (session_status() === PHP_SESSION_NONE) {
     session_start();
+}
 // check if the user is logged in
-if (!empty($_SESSION["conecteduser"])) {
+if (!empty($_SESSION["user"])) {
     // make a hidden input with the username
-    echo "<input type='hidden' id='username' value='" . $_SESSION["conecteduser"] . "' />";
+    echo "<input type='text' id='username' value='" . $_SESSION["user"] . "' hidden />";
     // navigate to the page view
     $page = "view";
 }
 // check if the page is valid
-if ($page == "login" || $page == "view") {
+if ($page === "login" || $page === "view") {
     // load the page	
     require_once("views/$page.html");
 }
-?>
