@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // change id user to name user from session user
-    $('#user').html($('#username').val());
+    $('#user').html($('#session-user').text());
     // $('#user').value() = document.getElementById('username').value();
     // Todo : load rooms
     //$('#rooms').load('../controllers/rooms.php');
@@ -33,6 +33,7 @@ $(document).ready(function() {
         event.preventDefault();
         let name = $('#name').val();
         let content = $('#content').val();
+        // avoid duplicate messages
         $.ajax({
             url: 'controllers/save.php',
             type: 'GET',
@@ -45,7 +46,11 @@ $(document).ready(function() {
                 $('#chat').load('controllers/get.php', scrollToBottom);
                 if(data === 'error') {
                     // show error that the message must have content in id="error" element then hide it after 3 seconds
-                    $('#error').html("Le message doit avoir du contenu").show().delay(3000).fadeOut();
+                    $('#error').text("Le message doit avoir du contenu").show().delay(3000).fadeOut();
+                }
+                if(data === 'duplicate') {
+                    // show success message in id="success" element then hide it after 3 seconds
+                    $('#error').text("Le message est un doublon").show().delay(3000).fadeOut();
                 }
             }
         });
@@ -74,7 +79,6 @@ $(document).ready(function() {
     $('#logout').click(function() {
         sessionStorage.removeItem('user');
         sessionStorage.clear();
-        alert("Vous êtes déconnecté");
         window.location.href = "index.php";
     });
 });

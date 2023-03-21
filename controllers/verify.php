@@ -1,6 +1,5 @@
 <?php
-include_once "../models/user.php";
-use models\user;
+include_once "..\models\user.php";
 // check if the validity of the username and password
 if (!empty($_POST["username"]) && !empty($_POST["password"])) {
     // get the username and password

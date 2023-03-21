@@ -2,13 +2,11 @@
 /* Développer un script PHP recuperer.php permettant l’obtention des 10 derniers messages contenus
 dans la table chat. */
 
-use models\chat;
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-include_once("../models/chat.php");
+include_once("..\models\chat.php");
 $model = new chat("chat");
 try {
     $messages = $model->selectNLatest(10);

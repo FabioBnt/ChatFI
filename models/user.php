@@ -1,10 +1,6 @@
 <?php
 
-namespace models;
-
-use database\dao;
-
-include_once "../database/dao.php";
+include_once "..\database\dao.php";
 
 class user
 {

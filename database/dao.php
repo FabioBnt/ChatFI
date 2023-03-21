@@ -1,9 +1,5 @@
 <?php
 
-namespace database;
-
-use Exception;
-use PDO;
 
 class dao
 {
