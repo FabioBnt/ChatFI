@@ -16,7 +16,8 @@ class user
         return $this->dao->select();
     }
 
-    public function selectUser($name,$password){
-        return $this->dao->selectUser($name,$password);
+    public function selectUser($name,$password)
+    {
+        return $this->dao->selectUser($name, $password);
     }
 }

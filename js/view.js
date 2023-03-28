@@ -1,24 +1,10 @@
 $(document).ready(function() {
+    // numeber of new messages
+    let newMessages = 0;
     // change id user to name user from session user
     $('#user').html($('#session-user').text());
-    // $('#user').value() = document.getElementById('username').value();
-    // Todo : load rooms
-    //$('#rooms').load('../controllers/rooms.php');
-    // Set active person
-    let rooms = {
-        list: document.querySelector('ul.people'),
-        all: document.querySelectorAll('.left .person'),
-        name: '' };
-    function setActivePerson(f) {
-        rooms.list.querySelector('.active').classList.remove('active');
-        f.classList.add('active');
-        rooms.name = f.querySelector('.name').innerText;
-    }
-    rooms.all.forEach(f => {
-        f.addEventListener('mousedown', () => {
-            f.classList.contains('active') || setActivePerson(f);
-        });
-    });
+    // name of the user in the chat
+    $('#name').val($('#session-user').text());
 
     // Scroll to the bottom of the right class div
     function scrollToBottom() {
@@ -48,9 +34,12 @@ $(document).ready(function() {
                     // show error that the message must have content in id="error" element then hide it after 3 seconds
                     $('#error').text("Le message doit avoir du contenu").show().delay(3000).fadeOut();
                 }
-                if(data === 'duplicate') {
+                else if(data === 'duplicate') {
                     // show success message in id="success" element then hide it after 3 seconds
                     $('#error').text("Le message est un doublon").show().delay(3000).fadeOut();
+                }else{
+                    // add 1 to the number of new messages
+                    newMessages++;
                 }
             }
         });
@@ -71,7 +60,10 @@ $(document).ready(function() {
 
     // Refresh contents every 2 seconds
     setInterval(function() {
-        $('#chat').load('controllers/get.php');
+        // chat class charge the messages the last 10 messages and + 1 every message is sent
+        $('#chat').load('controllers/get.php?new='+newMessages);
+        // preview class charge the names of the users in the chat
+        $('#names').load('controllers/names.php');
         console.log("refreshed");
     }, 2000);
 

@@ -1,50 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <meta charset="UTF-8">
  <title>ChatFI</title>
 <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="controllers/view.js"></script>
+    <script src="js/view.js"></script>
+    <style>
+    </style>
 </head>
 <body>
-    <!-- head with the title and -->
+    <!-- head with the title and the user name and the logout button -->
     <div class="head">
         <div class="title">
             <h1>ChatFI</h1>
         </div>
         <div class="user">
-            <span class="name" id="user">user1</span>
+            <span id="user">user1</span>
             <span class="status">
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/status-online.png" alt="" />
             </span>
         </div>
         <div class="logout">
             <a href="javascript:;" class="logout-link" id="logout">Logout</a>
         </div>
+    </div>
+
 <div class="wrapper">
     <div class="container">
         <div class="left">
             <div class="top">
+                <!--
                 <input type="text" placeholder="Search" />
                 <a href="javascript:;" class="search"></a>
+                -->
+                <!-- centered title -->
+                <span class="title">Salles</span>
             </div>
             <ul class="people" id="room">
                 <li class="person active" data-chat="person1">
                     <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/thomas.jpg" alt="" />
                     <span class="name">Groupe1</span>
-                    <!-- Pour chacune des salles, afficher les utilisateurs participant à la conversation.-->
-                    <span class="preview">user1, user2, user3</span>
+                    <span class="preview" id="names">user1, user2, user3</span>
                     <span class="time">2:09 PM</span>
                 </li>
+                <!-- po
                 <li class="person" data-chat="person2">
                     <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/382994/john.jpg" alt="" />
                     <span class="name">Groupe2</span>
                     <span class="preview">user1, user2, user3</span>
                     <span class="time">2:09 PM</span>
                 </li>
+                -->
             </ul>
         </div>
         <!--no horizontal scroll-->

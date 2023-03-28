@@ -23,4 +23,14 @@ class chat
     {
         return $this->dao->selectNLatest($n);
     }
+
+    public function getAuthorNames(): array
+    {
+        $data = $this->dao->select();
+        $names = [];
+        foreach ($data as $row) {
+            $names[] = $row["author"];
+        }
+        return $names;
+    }
 }
