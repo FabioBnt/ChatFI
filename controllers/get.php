@@ -3,7 +3,7 @@
 dans la table chat. */
 
 include_once("..\models\chat.php");
-$model = new chat("chat");
+$model = new chat();
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
