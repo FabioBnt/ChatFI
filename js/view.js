@@ -22,7 +22,7 @@ $(document).ready(function() {
     $('#arrow').click(function() {
         scrollToBottom();
     });
-    
+
     // load chat once to scroll to bottom
     $('#chat').load("controllers/get.php", scrollToBottom);
 
@@ -62,7 +62,6 @@ $(document).ready(function() {
                 }else{
                     // add 1 to the number of new messages
                     newMessages++;
-                    scrollToBottom();
                 }
             }
         });

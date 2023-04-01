@@ -1,0 +1,8 @@
+url : 
+comptes auth :
+nom utilisateur     mdp
+admin               $iutinfo
+Ismail              $iutinfo
+Fabio               $iutinfo
+Arthur              $iutinfo
+Teo                 $iutinfo
